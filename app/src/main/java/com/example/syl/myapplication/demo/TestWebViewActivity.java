@@ -1,8 +1,10 @@
-package com.example.syl.myapplication;
+package com.example.syl.myapplication.demo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
+
+import com.example.syl.myapplication.R;
 
 import butterknife.BindView;
 import butterknife.OnClick;

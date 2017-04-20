@@ -1,4 +1,4 @@
-package com.example.syl.myapplication;
+package com.example.syl.myapplication.demo;
 
 import android.content.ComponentName;
 import android.content.ServiceConnection;
@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.syl.myapplication.R;
 import com.example.syl.myapplication.ipc.IMyService;
 import com.example.syl.myapplication.ipc.Student;
 

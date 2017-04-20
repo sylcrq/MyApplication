@@ -1,9 +1,10 @@
-package com.example.syl.myapplication;
+package com.example.syl.myapplication.demo;
 
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.syl.myapplication.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;

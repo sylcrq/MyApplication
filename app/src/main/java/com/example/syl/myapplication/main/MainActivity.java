@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.syl.myapplication.R;
-import com.example.syl.myapplication.TestLayoutActivity;
-import com.example.syl.myapplication.TestServiceActivity;
-import com.example.syl.myapplication.TestWebViewActivity;
+import com.example.syl.myapplication.demo.TestLayoutActivity;
+import com.example.syl.myapplication.demo.TestServiceActivity;
+import com.example.syl.myapplication.demo.TestWebViewActivity;
 import com.example.syl.myapplication.demo.RemoteActivity;
 
 import java.util.ArrayList;
