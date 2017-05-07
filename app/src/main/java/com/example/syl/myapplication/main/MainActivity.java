@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.syl.myapplication.R;
+import com.example.syl.myapplication.demo.TestAlphaActivity;
 import com.example.syl.myapplication.demo.TestLayoutActivity;
 import com.example.syl.myapplication.demo.TestServiceActivity;
 import com.example.syl.myapplication.demo.TestWebViewActivity;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mDemoMap.put("测试Service", TestServiceActivity.class);
         mDemoMap.put("运行在独立进程中的Activity", RemoteActivity.class);
         mDemoMap.put("测试Layout布局", TestLayoutActivity.class);
+        mDemoMap.put("测试设置背景alpha", TestAlphaActivity.class);
         //Add New Demo Here !
     }
 
