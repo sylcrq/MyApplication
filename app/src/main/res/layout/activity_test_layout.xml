@@ -47,5 +47,79 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout2"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#cccccc"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout4"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/layout3"
+        android:background="#BBDEFB">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/title"
+            android:background="#D81B60"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/sub_title"
+            android:text="title"/>
+
+        <TextView
+            android:id="@+id/sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="sub title"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout5"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/layout4"
+        android:background="#B2DFDB"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/layout5_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#D81B60"/>
+
+        <TextView
+            android:id="@+id/layout5_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title"/>
+
+        <TextView
+            android:id="@+id/layout5_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="sub title"/>
+    </LinearLayout>
+
 
 </RelativeLayout>
