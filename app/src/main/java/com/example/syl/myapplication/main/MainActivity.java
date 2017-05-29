@@ -16,6 +16,7 @@ import com.example.syl.myapplication.demo.TestLayoutActivity;
 import com.example.syl.myapplication.demo.TestServiceActivity;
 import com.example.syl.myapplication.demo.TestWebViewActivity;
 import com.example.syl.myapplication.demo.RemoteActivity;
+import com.example.syl.myapplication.demo.ViewPagerActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mDemoMap.put("运行在独立进程中的Activity", RemoteActivity.class);
         mDemoMap.put("测试Layout布局", TestLayoutActivity.class);
         mDemoMap.put("测试设置背景alpha", TestAlphaActivity.class);
+        mDemoMap.put("测试ViewPager", ViewPagerActivity.class);
         //Add New Demo Here !
     }
 
