@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.syl.myapplication.R;
+import com.example.syl.myapplication.demo.GaussianBlurActivity;
 import com.example.syl.myapplication.demo.TestAlphaActivity;
 import com.example.syl.myapplication.demo.TestLayoutActivity;
 import com.example.syl.myapplication.demo.TestServiceActivity;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mDemoMap.put("测试Layout布局", TestLayoutActivity.class);
         mDemoMap.put("测试设置背景alpha", TestAlphaActivity.class);
         mDemoMap.put("测试ViewPager", ViewPagerActivity.class);
+        mDemoMap.put("测试高斯模糊", GaussianBlurActivity.class);
         //Add New Demo Here !
     }
 

@@ -41,6 +41,8 @@
         </activity>
         <activity android:name=".demo.ViewPagerActivity">
         </activity>
+        <activity android:name=".demo.GaussianBlurActivity">
+        </activity>
 
         <!-- Service -->
         <service
