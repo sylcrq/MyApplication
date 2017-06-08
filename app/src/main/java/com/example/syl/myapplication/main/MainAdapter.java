@@ -14,7 +14,12 @@ import java.util.List;
 /**
  * Created by Shen YunLong on 2017/04/10.
  */
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseVH> {
+
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_ITEM = 1;
+
+    private View mHeaderView;
 
     public interface OnItemClickListener {
         void onItemClick(View itemView, int position);
@@ -30,35 +35,71 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         mItems = items;
     }
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.main_recycler_view_item, parent, false);
+    public View getHeaderView() {
+        return mHeaderView;
+    }
 
-        ViewHolder viewHolder = new ViewHolder(view, mListener);
-        return viewHolder;
+    public void setHeaderView(View headerView) {
+        mHeaderView = headerView;
+        notifyItemInserted(0);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        MainItem item = mItems.get(position);
-        holder.mTitle.setText(item.mTitle);
+    public BaseVH onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (mHeaderView != null && viewType == TYPE_HEADER) {
+            return new HeaderVH(mHeaderView);
+        }
+        View view = LayoutInflater.from(mContext).inflate(R.layout.main_recycler_view_item, parent, false);
+
+        return new ItemVH(view, mHeaderView != null, mListener);
+    }
+
+    @Override
+    public void onBindViewHolder(BaseVH holder, int position) {
+        if (getItemViewType(position) == TYPE_HEADER) {
+            return;
+        }
+        //需要调整position
+        int realPosition = (mHeaderView == null) ? position : position - 1;
+        MainItem item = mItems.get(realPosition);
+        ((ItemVH) holder).mTitle.setText(item.mTitle);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mHeaderView != null && position == 0) {
+            return TYPE_HEADER;
+        }
+        return TYPE_ITEM;
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return (mHeaderView == null) ? mItems.size() : mItems.size() + 1;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class BaseVH extends RecyclerView.ViewHolder {
+
+        public BaseVH(View itemView) {
+            super(itemView);
+        }
+    }
+
+    /**
+     * Item ViewHolder extends {@link BaseVH}
+     */
+    public static class ItemVH extends BaseVH {
+        private boolean mHasHeader;
         private TextView mTitle;
 
-        public ViewHolder(final View itemView, final OnItemClickListener listener) {
+        public ItemVH(final View itemView, final boolean hasHeader, final OnItemClickListener listener) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.item_title);
+            mHasHeader = hasHeader;
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,12 +107,24 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(itemView, position);
+                            //需要调整position
+                            int realPosition = hasHeader ? position - 1 : position;
+                            listener.onItemClick(itemView, realPosition);
                         }
                     }
                 }
             });
         }
 
+    }
+
+    /**
+     * Header ViewHolder extends {@link BaseVH}
+     */
+    public static class HeaderVH extends BaseVH {
+
+        public HeaderVH(View itemView) {
+            super(itemView);
+        }
     }
 }
