@@ -1,6 +1,7 @@
 package com.example.syl.myapplication.main;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseVH> {
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
+    private static final int TYPE_RECYCLERVIEW = 2;
 
     private View mHeaderView;
 
@@ -49,6 +51,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseVH> {
         if (mHeaderView != null && viewType == TYPE_HEADER) {
             return new HeaderVH(mHeaderView);
         }
+        if (viewType == TYPE_RECYCLERVIEW) {
+            //横向RecyclerView
+            RecyclerView recyclerView = new RecyclerView(mContext);
+            LinearLayoutManager layoutManager =
+                    new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(new SubAdapter(mContext));
+            return new BaseVH(recyclerView);
+        }
         View view = LayoutInflater.from(mContext).inflate(R.layout.main_recycler_view_item, parent, false);
 
         return new ItemVH(view, mHeaderView != null, mListener);
@@ -59,23 +70,32 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseVH> {
         if (getItemViewType(position) == TYPE_HEADER) {
             return;
         }
+        if (getItemViewType(position) == TYPE_RECYCLERVIEW) {
+            return;
+        }
         //需要调整position
-        int realPosition = (mHeaderView == null) ? position : position - 1;
+        int realPosition = (mHeaderView == null) ? position - 1 : position - 2;
         MainItem item = mItems.get(realPosition);
         ((ItemVH) holder).mTitle.setText(item.mTitle);
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (mHeaderView != null && position == 0) {
-            return TYPE_HEADER;
+        if (mHeaderView != null) { //has header
+            if (position == 0) {
+                return TYPE_HEADER;
+            } else if (position == 1) {
+                return TYPE_RECYCLERVIEW;
+            }
+        } else if (position == 0) { // no header
+            return TYPE_RECYCLERVIEW;
         }
         return TYPE_ITEM;
     }
 
     @Override
     public int getItemCount() {
-        return (mHeaderView == null) ? mItems.size() : mItems.size() + 1;
+        return (mHeaderView == null) ? mItems.size() + 1 : mItems.size() + 2;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -108,7 +128,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseVH> {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             //需要调整position
-                            int realPosition = hasHeader ? position - 1 : position;
+                            int realPosition = hasHeader ? position - 2 : position - 1;
                             listener.onItemClick(itemView, realPosition);
                         }
                     }
