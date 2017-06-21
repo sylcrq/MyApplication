@@ -1,8 +1,10 @@
 package com.example.syl.myapplication.demo;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 
 import com.example.syl.myapplication.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -27,6 +29,8 @@ public class TestLayoutActivity extends AppCompatActivity {
     @BindView(R.id.image4)
     SimpleDraweeView mImage4;
 
+    @BindView(R.id.layout6)
+    RelativeLayout mLayout6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +43,8 @@ public class TestLayoutActivity extends AppCompatActivity {
         mImage2.setImageURI(Uri.parse(url));
         mImage3.setImageURI(Uri.parse(url));
         mImage4.setImageURI(Uri.parse(url));
+
+        mLayout6.setBackgroundColor(Color.parseColor("#ccc8a06a"));
     }
+
 }
