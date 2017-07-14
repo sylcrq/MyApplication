@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.syl.myapplication.R;
 import com.example.syl.myapplication.demo.GaussianBlurActivity;
 import com.example.syl.myapplication.demo.TestAlphaActivity;
+import com.example.syl.myapplication.demo.TestDrawableActivity;
 import com.example.syl.myapplication.demo.TestLayoutActivity;
 import com.example.syl.myapplication.demo.TestServiceActivity;
 import com.example.syl.myapplication.demo.TestWebViewActivity;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mDemoMap.put("测试设置背景alpha", TestAlphaActivity.class);
         mDemoMap.put("测试ViewPager", ViewPagerActivity.class);
         mDemoMap.put("测试高斯模糊", GaussianBlurActivity.class);
+        mDemoMap.put("测试Drawable", TestDrawableActivity.class);
         //Add New Demo Here !
     }
 
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManagerWithSmoothScroller(this));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //分割线
         RecyclerView.ItemDecoration itemDecoration =
@@ -89,6 +93,33 @@ public class MainActivity extends AppCompatActivity {
         //Add header
         View header = LayoutInflater.from(this).inflate(R.layout.activity_main_header, mRecyclerView, false);
         mAdapter.setHeaderView(header);
+
+        mRecyclerView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                mRecyclerView.smoothScrollToPosition(2);
+//                mRecyclerView.scrollToPosition(2);
+
+//                if (mRecyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+//                    ((LinearLayoutManager) mRecyclerView.getLayoutManager()).scrollToPositionWithOffset(2, 100);
+//                }
+//                mRecyclerView.scrollBy(0, 200);
+            }
+        }, 1000);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.d("shenyunlong", "onScrollStateChanged");
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int xx = mRecyclerView.getChildAt(0).getBottom();
+                Log.d("shenyunlong", ">>> onScrolled " + dx + "," + dy + "," + xx);
+            }
+        });
     }
 
 
