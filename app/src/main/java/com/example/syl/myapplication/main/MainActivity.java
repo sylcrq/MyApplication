@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.syl.myapplication.R;
 import com.example.syl.myapplication.demo.GaussianBlurActivity;
+import com.example.syl.myapplication.demo.SkinActivity;
 import com.example.syl.myapplication.demo.TestAlphaActivity;
 import com.example.syl.myapplication.demo.TestDrawableActivity;
 import com.example.syl.myapplication.demo.TestLayoutActivity;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mDemoMap.put("测试ViewPager", ViewPagerActivity.class);
         mDemoMap.put("测试高斯模糊", GaussianBlurActivity.class);
         mDemoMap.put("测试Drawable", TestDrawableActivity.class);
+        mDemoMap.put("测试换肤", SkinActivity.class);
         //Add New Demo Here !
     }
 
